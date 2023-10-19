@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import Input from '@/app/components/input/Input';
 
 type Variant = 'LOGIN' | 'REGISTER';
 
@@ -47,7 +48,15 @@ const AuthForm = () => {
     // NextAuth Social Sign In
   };
 
-  return <div>AuthForm2</div>;
+  return (
+    <div className='mt-8 sm:mx-auto sm:w-full sm:max-w-md'>
+      <div className='bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10'>
+        <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
+          <Input id='email' label='Email' register={register} errors={errors} />
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default AuthForm;
