@@ -1,3 +1,5 @@
+import DesktopSidebar from './DesktopSidebar';
+
 const Sidebar = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='h-full'>
