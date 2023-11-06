@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
           href='/conversations'
           className='lg:hidden block text-sky-500 hover:text-sky-600 transition cursor-pointer'
         >
-          <HiChevronLeft />
+          <HiChevronLeft size={32} />
         </Link>
         <Avatar user={otherUser} />
         <div className='flex flex-col'>
@@ -39,7 +39,11 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
           </div>
         </div>
       </div>
-      <HiEllipsisHorizontal />
+      <HiEllipsisHorizontal
+        size={32}
+        onclick={() => {}}
+        className='text-sky-500 cursor-pointer hover:text-sky-600 transition'
+      />
     </div>
   )
 }
