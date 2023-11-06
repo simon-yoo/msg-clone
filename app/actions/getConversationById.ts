@@ -17,6 +17,7 @@ const getConversationById = async (conversationId: string) => {
         users: true,
       },
     })
+    return conversation
   } catch (error: any) {
     return null
   }
