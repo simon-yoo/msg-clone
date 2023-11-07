@@ -99,6 +99,35 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                             </div>
                           </div>
                         </div>
+                        <div className=' w-full pb-5 pt-5 sm:px-0 sm:pt-0'>
+                          <dl className=' space-y-8 px-4 sm:space-y-6 sm:px-6'>
+                            {!data.isGroup && (
+                              <div>
+                                <dt className=' text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0'>
+                                  Email
+                                </dt>
+                                <dd className=' mt-1 text-sm text-gray-900 sm:col-span-2'>
+                                  {otherUser.email}
+                                </dd>
+                              </div>
+                            )}
+                            {!data.isGroup && (
+                              <>
+                                <hr />
+                                <div>
+                                  <dt className=' text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0'>
+                                    Joined
+                                  </dt>
+                                  <dd className=' mt-1 text-sm text-gray-900 sm:col-span-2'>
+                                    <time dateTime={joinedDate}>
+                                      {joinedDate}
+                                    </time>
+                                  </dd>
+                                </div>
+                              </>
+                            )}
+                          </dl>
+                        </div>
                       </div>
                     </div>
                   </div>
