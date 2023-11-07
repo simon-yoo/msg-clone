@@ -3,6 +3,7 @@
 import useConversation from '@/app/hooks/useConversation'
 import axios from 'axios'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { HiPhoto } from 'react-icons/hi2'
 
 const Form = () => {
   const { conversationId } = useConversation()
@@ -27,7 +28,13 @@ const Form = () => {
   }
   return (
     <div className='py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full'>
-      Form
+      <HiPhoto size={30} className='text-sky-500' />
+      <form
+        className='flex items-center gap-2 lg:gap-4 w-full'
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <MessageInput id='message' register={register} />
+      </form>
     </div>
   )
 }
