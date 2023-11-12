@@ -1,5 +1,6 @@
 'use client'
 
+import Button from '@/app/components/Button'
 import Modal from '@/app/components/Modal'
 import useConversation from '@/app/hooks/useConversation'
 import { Dialog } from '@headlessui/react'
@@ -54,6 +55,14 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
             </p>
           </div>
         </div>
+      </div>
+      <div className='mt-5 sm:mt-4 sm:flex sm:flex-row-reverse'>
+        <Button disabled={isLoading} danger onClick={onDelete}>
+          Delete
+        </Button>
+        <Button disabled={isLoading} secondary onClick={onClose}>
+          Cancel
+        </Button>
       </div>
     </Modal>
   )
