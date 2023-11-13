@@ -77,11 +77,11 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
               <Select
                 disabled={isLoading}
                 label='Members'
-                option={users.map((user) => ({
+                options={users.map((user) => ({
                   value: user.id,
                   label: user.name,
                 }))}
-                onChage={(value) =>
+                onChange={(value) =>
                   setValue('members', value, {
                     shouldValidate: true,
                   })
