@@ -65,7 +65,15 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
               Creat a chat with more than 2 people
             </p>
             <div className=' mt-10 flex flex-col gap-y-8'>
-              <Input />
+              <Input
+                register={register}
+                label='Name'
+                id='name'
+                disabled={isLoading}
+                required
+                errors={errors}
+              />
+              <Select />
             </div>
           </div>
         </div>
