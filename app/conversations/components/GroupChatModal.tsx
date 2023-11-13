@@ -8,6 +8,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import Modal from '../../components/Modal'
 import Input from '@/app/components/input/Input'
+import Select from '@/app/components/input/Select'
 
 interface GroupChatModalProps {
   isOpen?: boolean
@@ -73,7 +74,20 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
                 required
                 errors={errors}
               />
-              <Select />
+              <Select
+                disabled={isLoading}
+                label='Members'
+                option={users.map((user) => ({
+                  value: user.id,
+                  label: user.name,
+                }))}
+                onChage={(value) =>
+                  setValue('members', value, {
+                    shouldValidate: true,
+                  })
+                }
+                value={members}
+              />
             </div>
           </div>
         </div>
