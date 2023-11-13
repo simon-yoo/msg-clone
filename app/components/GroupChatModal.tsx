@@ -7,7 +7,11 @@ interface GroupChatModalProps {
   onClose: () => void
   users: User[]
 }
-const GroupChatModal: React.FC<GroupChatModalProps> = ({ isOpen, onClose }) => {
+const GroupChatModal: React.FC<GroupChatModalProps> = ({
+  isOpen,
+  onClose,
+  users,
+}) => {
   return <div>GroupChatModal</div>
 }
 
