@@ -23,7 +23,22 @@ const useActiveChannel = () => {
       )
       set(initialMembers)
     })
-  }, [])
+
+    channel.bind('pusher:member_added', (member: Record<string, any>) => {
+      add(member.id)
+    })
+
+    channel.bind('pusher:member_remove', (member: Record<string, any>) => {
+      remove(member.id)
+    })
+
+    return () => {
+      if (activeChannel) {
+        pusherClient.unsubscribe('presence-messenger')
+        setActiveChannel(null)
+      }
+    }
+  }, [activeChannel, set, add, remove])
 }
 
 export default useActiveChannel
