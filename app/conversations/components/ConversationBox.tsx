@@ -81,7 +81,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     //If the last message is not empty && not an image
     //Display that message
     if (lastMessage?.body) {
-      return lastMessage.body
+      return lastMessage?.body
     }
 
     //Otherwise display Started a conversation
