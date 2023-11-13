@@ -1,6 +1,10 @@
 'use client'
 
-const GroupChatModal = () => {
+interface GroupChatModalProps {
+  isOpen?: boolean
+  onClose: () => void
+}
+const GroupChatModal: React.FC<GroupChatModalProps> = ({ isOpen, onClose }) => {
   return <div>GroupChatModal</div>
 }
 
