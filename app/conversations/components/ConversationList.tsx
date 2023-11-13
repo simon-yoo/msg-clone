@@ -68,10 +68,14 @@ const ConversationList: React.FC<ConversationListProps> = ({
       setItems((current) => {
         return [...current.filter((convo) => convo.id !== conversation.id)]
       })
+
+      if (conversationId === conversation.id) {
+        router.push('/conversations')
+      }
     }
     pusherClient.bind('conversation:new', newHandler)
     pusherClient.bind('conversation:update', updateHandler)
-    pusherClient.bind('coversation:remove', removeHandler)
+    pusherClient.bind('conversation:remove', removeHandler)
 
     return () => {
       pusherClient.unsubscribe(pusherKey)
@@ -79,7 +83,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
       pusherClient.unbind('conversaton:update', updateHandler)
       pusherClient.unbind('conversation:remover', removeHandler)
     }
-  }, [pusherKey])
+  }, [pusherKey, conversationId, router])
   return (
     <>
       <GroupChatModal
