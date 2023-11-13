@@ -6,13 +6,13 @@ import { useEffect, useRef, useState } from 'react'
 import MessageBox from './MessageBox'
 import axios from 'axios'
 import { pusherClient } from '@/app/libs/pusher'
-import { find } from 'lodash'
+import { find, update } from 'lodash'
 
 interface BodyProps {
   initialMessages: FullMessageType[]
 }
 const Body: React.FC<BodyProps> = ({ initialMessages }) => {
-  const [messages, setMessage] = useState(initialMessages)
+  const [messages, setMessages] = useState(initialMessages)
   const bottomRef = useRef<HTMLDivElement>(null)
 
   const { conversationId } = useConversation()
@@ -28,7 +28,7 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
     const messageHandler = (message: FullMessageType) => {
       axios.post(`/api/conversations/${conversationId}/seen`)
 
-      setMessage((current) => {
+      setMessages((current) => {
         if (find(current, { id: message.id })) {
           return current
         }
@@ -37,11 +37,26 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
 
       bottomRef?.current?.scrollIntoView()
     }
+
+    const updateMessageHandler = (newMessage: FullMessageType) => {
+      setMessages((current) =>
+        current.map((currentMessage) => {
+          if (currentMessage.id === newMessage.id) {
+            return newMessage
+          }
+
+          return currentMessage
+        })
+      )
+    }
+
     pusherClient.bind('messages:new', messageHandler)
+    pusherClient.bind('message:update', updateMessageHandler)
 
     return () => {
       pusherClient.unsubscribe(conversationId)
       pusherClient.unbind('messages:new', messageHandler)
+      pusherClient.unbind('message:update', updateMessageHandler)
     }
   }, [conversationId])
 
