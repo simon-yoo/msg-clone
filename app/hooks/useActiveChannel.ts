@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import useActiveList from './useActiveList'
-import { Channel, Members } from 'pusher-js'
 import { pusherClient } from '../libs/pusher'
+import { Channel, Members } from 'pusher-js'
+import useActiveList from './useActiveList'
 
 const useActiveChannel = () => {
   const { set, add, remove } = useActiveList()
@@ -28,7 +28,7 @@ const useActiveChannel = () => {
       add(member.id)
     })
 
-    channel.bind('pusher:member_remove', (member: Record<string, any>) => {
+    channel.bind('pusher:member_removed', (member: Record<string, any>) => {
       remove(member.id)
     })
 
