@@ -10,6 +10,7 @@ interface AvatarProps {
 
 const Avatar: React.FC<AvatarProps> = ({ user }) => {
   const { members } = useActiveList()
+  console.log(user)
   const isActive = members.indexOf(user?.email!) !== -1
 
   return (
